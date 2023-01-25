@@ -1,0 +1,25 @@
+1. when login button is clicked, the login function in controllers\main.js is called
+
+2. it will check if the username or password is available or not available
+
+3. if available then it will generate a token 
+
+4. when a post request is come in the login route it will send the generated token there
+
+5. with that response token value, fontend (browser-app.js) set this token in localstorage with name token
+
+6. when again dashboard button is pressed then in that functin from browser-app.js it will check if the token is available or not from the localstorage 
+
+7. if available then it will send the token in the header of the request as,
+  
+      headers: {
+          'Authorization': 'Bearer ' + token
+      }
+
+8. in the backend then it will check if the token is available or not in the header of the request in the middleware(auth.js)
+
+9. if available then it will check if the token is valid or not with secret token
+
+10. if valid then it will call the next and power will hand over to the dashboard controller
+
+11. if not valid then it will send the response as "unauthorized"
